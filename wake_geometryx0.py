@@ -6,20 +6,26 @@ from numpy import deg2rad
 
 # Basic two turbines one behind the other . but program generalised to any crosswind distance. Geometry only
 
+
 def wake_radius(c1, ct, A, x):
     return ((35.0 / 2.0 / pi) ** (1.0 / 5.0)) * ((3.0 * c1 ** 2.0) ** (1.0 / 5.0)) * ((ct * A * x) ** (1.0 / 3.0))
+
 
 def wake_speed(U0, ct, A, x, r, c1):
     return U0 * (1.0 - ((ct * A * x ** (- 2.0)) ** (1.0 / 3.0)) / 9.0 * (r ** (3.0 / 2.0) * (3.0 * c1 ** 2.0 * ct * A * x) ** (- 1.0 / 2.0) - (35.0 / 2.0 / pi) ** (3.0 / 10.0) * (3.0 * c1 ** 2.0) ** (- 1.0 / 5.0)) ** 2.0)
 
+
 def wake_deficit(U0, ct, A, x, r, c1):
     return 1.0 - wake_speed(U0, ct, A, x, r, c1) / U0
+
 
 def distance(t1_x, t1_y, t2_x, t2_y):
     return abs(sqrt((t1_x-t2_x) ** 2.0 + (t1_y - t2_y) ** 2.0))
 
+
 def crosswind_distance(w_d, t1_x, t1_y, t2_x, t2_y):
     return abs(t1_x * (- sin(w_d)) + t1_y * cos(w_d) - t2_x * (- sin(w_d)) - t2_y * cos(w_d))
+
 
 def determine_if_in_wake(xt, yt, xw, yw, A, c1, ct, alpha, r0):  # According to Larsen Model only
     # Eq. of centreline is Y = tan (d) (X - Xt) + Yt

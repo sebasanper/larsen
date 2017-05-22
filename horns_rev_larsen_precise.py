@@ -18,6 +18,7 @@ direction = open('direction_efficiency_precise.dat', 'w')
 direction.write('# This file includes the efficiency of the whole farm by wind direction.\n# Wind direction angle\tFarm efficiency\n')
 row = open('row_data_precise.dat', 'w')
 
+
 def analysis():
 
     layout_x = []
